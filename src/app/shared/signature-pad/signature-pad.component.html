@@ -1,0 +1,30 @@
+<form [formGroup]="formulaire" (ngSubmit)="onSubmit()">
+  <label for="nom">Nom :</label>
+  <input type="text" id="nom" formControlName="nom">
+
+  <label for="email">Email :</label>
+  <input type="email" id="email" formControlName="email">
+
+  <label for="message">Message :</label>
+  <textarea id="message" formControlName="message"></textarea>
+
+  <button type="submit">Envoyer</button>
+</form>
+<h4>Please Add your signature here</h4>
+<div class="container">
+  <canvas #canvas width="300" height="70"></canvas>
+</div>
+@if (signatureNeeded) {
+  <p class="error-message">Signature is required</p>
+}
+
+<div class="buttons flex justify-between">
+  <button (click)="clearPad()">Clear</button>
+  <button (click)="savePad()">Submit the signature</button>
+</div>
+@if(signatureNeeded === false) {
+  <div>
+    <p>Signature in Base64Encoded Format</p>
+    <img src="{{ signatureImg }}" alt="" srcset="" />
+  </div>
+}
